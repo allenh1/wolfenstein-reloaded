@@ -54,7 +54,6 @@
 		</Compiler>
 		<Linker>
 			<Add library="mingw32" />
-			<Add library="..\wolf\lib\windows\SDL\SDL\libSDLmain.a" />
 			<Add library="..\wolf\lib\windows\boost\libboost_filesystem-mgw44-mt-1_43.dll" />
 			<Add library="..\wolf\lib\windows\boost\libboost_system-mgw44-mt-1_43.dll" />
 			<Add library="..\wolf\lib\windows\libssl\libeay32.dll" />
