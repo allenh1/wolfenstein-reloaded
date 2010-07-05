@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE Resource SYSTEM "WolfMap-0.1.dtd">
+<Resource name="Test" version="0.0.0" author="Morgan" category="maps">
+  <Map version="0.1">
+    <Settings>
+      <Setting name="TEST" value="0"/>
+    </Settings>
+    <World>
+      <PlayerSpawn x="0" y="0" angle="0"/>
+      <AISpawn x="0" y="0" angle="0" level="5"/>
+      <Scenery x="30" y="30" type="TEST"/>
+      <Ammo x="30" y="30" type="TEST"/>
+      <Treasure x="30" y="30" type="TEST"/>
+      <Secret x="30" y="30" type="TEST"/>
+      <Health x="30" y="30" type="TEST"/>
+      <Wall>
+        <Point x="5" y="5"/>
+        <Door x="10" y="10"/>
+        <Point x="15" y="15"/>
+        <Secret x="20" y="20"/>
+        <Point x="25" y="25"/>
+      </Wall>
+    </World>
+  </Map>
+</Resource>

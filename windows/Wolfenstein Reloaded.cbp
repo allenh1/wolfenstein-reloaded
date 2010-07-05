@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Wolfenstein Reloaded" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="..\wolf\build\windows\bin\Debug\Wolfenstein Reloaded" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\wolf\build\windows\bin\Debug\" />
+				<Option object_output="..\wolf\build\windows\obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="..\wolf\build\windows\bin\Release\Wolfenstein Reloaded" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="..\wolf\build\windows\bin\Release\" />
+				<Option object_output="..\wolf\build\windows\obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-fomit-frame-pointer" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="..\wolf\src" />
+			<Add directory="..\wolf\src\game" />
+			<Add directory="..\wolf\src\game\render" />
+			<Add directory="..\wolf\src\game\sound" />
+			<Add directory="..\wolf\src\include" />
+			<Add directory="..\wolf\src\main" />
+			<Add directory="..\wolf\src\network" />
+			<Add directory="..\wolf\src\platform" />
+			<Add directory="..\wolf\src\platform\windows" />
+			<Add directory="..\wolf\src\prototype" />
+			<Add directory="..\wolf\src\tools" />
+			<Add directory="..\wolf\src\include\boost" />
+			<Add directory="..\wolf\src\include\liblua" />
+			<Add directory="..\wolf\src\include\libxml" />
+			<Add directory="..\wolf\src\include\RandomLib" />
+			<Add directory="..\wolf\src\include\SDL" />
+			<Add directory="..\wolf\src\include\SDL_image" />
+			<Add directory="..\wolf\src\include\SDL_mixer" />
+			<Add directory="..\wolf\src\include\SDL_ttf" />
+		</Compiler>
+		<Linker>
+			<Add library="mingw32" />
+			<Add library="..\wolf\lib\windows\SDL\SDL\libSDLmain.a" />
+			<Add library="..\wolf\lib\windows\boost\libboost_filesystem-mgw44-mt-1_43.dll" />
+			<Add library="..\wolf\lib\windows\boost\libboost_system-mgw44-mt-1_43.dll" />
+			<Add library="..\wolf\lib\windows\libssl\libeay32.dll" />
+			<Add library="..\wolf\lib\windows\libssl\ssleay32.dll" />
+			<Add library="..\wolf\lib\windows\libxml2\iconv.dll" />
+			<Add library="..\wolf\lib\windows\libxml2\libxml2.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL\SDL.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_image\jpeg.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_image\libpng12-0.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_image\libtiff-3.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_image\SDL_image.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_image\zlib1.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_mixer\libogg-0.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_mixer\libvorbis-0.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_mixer\libvorbisfile-3.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_mixer\mikmod.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_mixer\SDL_mixer.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_mixer\smpeg.dll" />
+			<Add library="..\wolf\lib\windows\SDL\SDL_ttf\SDL_ttf.dll" />
+			<Add directory="..\wolf\lib\windows" />
+			<Add directory="..\wolf\lib\windows\boost" />
+			<Add directory="..\wolf\lib\windows\libcurl" />
+			<Add directory="..\wolf\lib\windows\liblua" />
+			<Add directory="..\wolf\lib\windows\libssl" />
+			<Add directory="..\wolf\lib\windows\libxml2" />
+			<Add directory="..\wolf\lib\windows\SDL" />
+			<Add directory="..\wolf\lib\windows\SDL\SDL" />
+			<Add directory="..\wolf\lib\windows\SDL\SDL_image" />
+			<Add directory="..\wolf\lib\windows\SDL\SDL_mixer" />
+			<Add directory="..\wolf\lib\windows\SDL\SDL_ttf" />
+			<Add directory="..\wolf\lib\windows\zlib" />
+		</Linker>
+		<Unit filename="..\wolf\src\defs.h" />
+		<Unit filename="..\wolf\src\game\gMain.cpp" />
+		<Unit filename="..\wolf\src\game\gMain.h" />
+		<Unit filename="..\wolf\src\include\RandomLib\ExactExponential.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\ExactPower.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\ExponentialDistribution.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\ExponentialProb.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\LeadingZeros.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\NormalDistribution.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\Random.cpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\Random.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomAlgorithm.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomCanonical.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomEngine.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomMixer.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomNumber.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomPower2.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomSeed.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomSelect.hpp" />
+		<Unit filename="..\wolf\src\include\RandomLib\RandomType.hpp" />
+		<Unit filename="..\wolf\src\include\SDL\SDL.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_active.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_audio.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_byteorder.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_cdrom.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_dreamcast.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_macos.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_macosx.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_minimal.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_nds.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_os2.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_symbian.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_config_win32.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_copying.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_cpuinfo.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_endian.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_error.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_events.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_getenv.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_joystick.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_keyboard.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_keysym.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_loadso.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_main.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_mouse.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_mutex.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_name.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_opengl.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_platform.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_quit.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_rwops.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_stdinc.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_syswm.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_thread.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_timer.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_types.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_version.h" />
+		<Unit filename="..\wolf\src\include\SDL\SDL_video.h" />
+		<Unit filename="..\wolf\src\include\SDL\begin_code.h" />
+		<Unit filename="..\wolf\src\include\SDL\close_code.h" />
+		<Unit filename="..\wolf\src\include\SDL_image\SDL_image.h" />
+		<Unit filename="..\wolf\src\include\SDL_mixer\SDL_mixer.h" />
+		<Unit filename="..\wolf\src\include\SDL_ttf\SDL_ttf.h" />
+		<Unit filename="..\wolf\src\include\curl\curl.h" />
+		<Unit filename="..\wolf\src\include\curl\curlbuild.h" />
+		<Unit filename="..\wolf\src\include\curl\curlrules.h" />
+		<Unit filename="..\wolf\src\include\curl\curlver.h" />
+		<Unit filename="..\wolf\src\include\curl\easy.h" />
+		<Unit filename="..\wolf\src\include\curl\mprintf.h" />
+		<Unit filename="..\wolf\src\include\curl\multi.h" />
+		<Unit filename="..\wolf\src\include\curl\stdcheaders.h" />
+		<Unit filename="..\wolf\src\include\curl\typecheck-gcc.h" />
+		<Unit filename="..\wolf\src\include\curl\types.h" />
+		<Unit filename="..\wolf\src\include\liblua\lapi.h" />
+		<Unit filename="..\wolf\src\include\liblua\lauxlib.h" />
+		<Unit filename="..\wolf\src\include\liblua\lcode.h" />
+		<Unit filename="..\wolf\src\include\liblua\ldebug.h" />
+		<Unit filename="..\wolf\src\include\liblua\ldo.h" />
+		<Unit filename="..\wolf\src\include\liblua\lfunc.h" />
+		<Unit filename="..\wolf\src\include\liblua\lgc.h" />
+		<Unit filename="..\wolf\src\include\liblua\llex.h" />
+		<Unit filename="..\wolf\src\include\liblua\llimits.h" />
+		<Unit filename="..\wolf\src\include\liblua\lmem.h" />
+		<Unit filename="..\wolf\src\include\liblua\lobject.h" />
+		<Unit filename="..\wolf\src\include\liblua\lopcodes.h" />
+		<Unit filename="..\wolf\src\include\liblua\lparser.h" />
+		<Unit filename="..\wolf\src\include\liblua\lstate.h" />
+		<Unit filename="..\wolf\src\include\liblua\lstring.h" />
+		<Unit filename="..\wolf\src\include\liblua\ltable.h" />
+		<Unit filename="..\wolf\src\include\liblua\ltm.h" />
+		<Unit filename="..\wolf\src\include\liblua\lua.h" />
+		<Unit filename="..\wolf\src\include\liblua\luaconf.h" />
+		<Unit filename="..\wolf\src\include\liblua\lualib.h" />
+		<Unit filename="..\wolf\src\include\liblua\lundump.h" />
+		<Unit filename="..\wolf\src\include\liblua\lvm.h" />
+		<Unit filename="..\wolf\src\include\liblua\lzio.h" />
+		<Unit filename="..\wolf\src\include\libxml\DOCBparser.h" />
+		<Unit filename="..\wolf\src\include\libxml\HTMLparser.h" />
+		<Unit filename="..\wolf\src\include\libxml\HTMLtree.h" />
+		<Unit filename="..\wolf\src\include\libxml\SAX.h" />
+		<Unit filename="..\wolf\src\include\libxml\SAX2.h" />
+		<Unit filename="..\wolf\src\include\libxml\c14n.h" />
+		<Unit filename="..\wolf\src\include\libxml\catalog.h" />
+		<Unit filename="..\wolf\src\include\libxml\chvalid.h" />
+		<Unit filename="..\wolf\src\include\libxml\debugXML.h" />
+		<Unit filename="..\wolf\src\include\libxml\dict.h" />
+		<Unit filename="..\wolf\src\include\libxml\encoding.h" />
+		<Unit filename="..\wolf\src\include\libxml\entities.h" />
+		<Unit filename="..\wolf\src\include\libxml\globals.h" />
+		<Unit filename="..\wolf\src\include\libxml\hash.h" />
+		<Unit filename="..\wolf\src\include\libxml\list.h" />
+		<Unit filename="..\wolf\src\include\libxml\nanoftp.h" />
+		<Unit filename="..\wolf\src\include\libxml\nanohttp.h" />
+		<Unit filename="..\wolf\src\include\libxml\parser.h" />
+		<Unit filename="..\wolf\src\include\libxml\parserInternals.h" />
+		<Unit filename="..\wolf\src\include\libxml\pattern.h" />
+		<Unit filename="..\wolf\src\include\libxml\relaxng.h" />
+		<Unit filename="..\wolf\src\include\libxml\schemasInternals.h" />
+		<Unit filename="..\wolf\src\include\libxml\schematron.h" />
+		<Unit filename="..\wolf\src\include\libxml\threads.h" />
+		<Unit filename="..\wolf\src\include\libxml\tree.h" />
+		<Unit filename="..\wolf\src\include\libxml\uri.h" />
+		<Unit filename="..\wolf\src\include\libxml\valid.h" />
+		<Unit filename="..\wolf\src\include\libxml\xinclude.h" />
+		<Unit filename="..\wolf\src\include\libxml\xlink.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlIO.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlautomata.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlerror.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlexports.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlmemory.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlmodule.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlreader.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlregexp.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlsave.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlschemas.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlschemastypes.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlstring.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlunicode.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlversion.h" />
+		<Unit filename="..\wolf\src\include\libxml\xmlwriter.h" />
+		<Unit filename="..\wolf\src\include\libxml\xpath.h" />
+		<Unit filename="..\wolf\src\include\libxml\xpathInternals.h" />
+		<Unit filename="..\wolf\src\include\libxml\xpointer.h" />
+		<Unit filename="..\wolf\src\main\mMain.cpp" />
+		<Unit filename="..\wolf\src\main\mMain.h" />
+		<Unit filename="..\wolf\src\main\mThread.cpp" />
+		<Unit filename="..\wolf\src\main\mThread.h" />
+		<Unit filename="..\wolf\src\network\nMain.cpp" />
+		<Unit filename="..\wolf\src\network\nMain.h" />
+		<Unit filename="..\wolf\src\platform\macosx\SDLMain.h" />
+		<Unit filename="..\wolf\src\platform\windows\SDLmain.cpp" />
+		<Unit filename="..\wolf\src\prototype\pPrototype.cpp">
+			<Option compile="0" />
+			<Option link="0" />
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="..\wolf\src\prototype\pPrototype.h" />
+		<Unit filename="..\wolf\src\tools\tAlert.cpp" />
+		<Unit filename="..\wolf\src\tools\tAlert.h" />
+		<Unit filename="..\wolf\src\tools\tCURL.h" />
+		<Unit filename="..\wolf\src\tools\tColor.cpp" />
+		<Unit filename="..\wolf\src\tools\tColor.h" />
+		<Unit filename="..\wolf\src\tools\tCommandLine.cpp" />
+		<Unit filename="..\wolf\src\tools\tCommandLine.h" />
+		<Unit filename="..\wolf\src\tools\tConfig.cpp" />
+		<Unit filename="..\wolf\src\tools\tConfig.h" />
+		<Unit filename="..\wolf\src\tools\tDirectories.cpp" />
+		<Unit filename="..\wolf\src\tools\tDirectories.h" />
+		<Unit filename="..\wolf\src\tools\tError.cpp" />
+		<Unit filename="..\wolf\src\tools\tError.h" />
+		<Unit filename="..\wolf\src\tools\tID.cpp" />
+		<Unit filename="..\wolf\src\tools\tID.h" />
+		<Unit filename="..\wolf\src\tools\tLocale.cpp" />
+		<Unit filename="..\wolf\src\tools\tLocale.h" />
+		<Unit filename="..\wolf\src\tools\tMemory.cpp" />
+		<Unit filename="..\wolf\src\tools\tMemory.h" />
+		<Unit filename="..\wolf\src\tools\tRandom.cpp" />
+		<Unit filename="..\wolf\src\tools\tRandom.h" />
+		<Unit filename="..\wolf\src\tools\tResource.cpp" />
+		<Unit filename="..\wolf\src\tools\tResource.h" />
+		<Unit filename="..\wolf\src\tools\tSDL.h" />
+		<Unit filename="..\wolf\src\tools\tString.cpp" />
+		<Unit filename="..\wolf\src\tools\tXML.cpp" />
+		<Unit filename="..\wolf\src\tools\tXML.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
