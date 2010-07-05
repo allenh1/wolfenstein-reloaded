@@ -1,0 +1,9 @@
+//
+// Prefix header for all source files of the 'Wolfenstein Reloaded' target in the 'Wolfenstein Reloaded' project
+//
+
+#include <SDL/SDL.h>
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif

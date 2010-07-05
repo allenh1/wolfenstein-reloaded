@@ -1,0 +1,66 @@
+<!-- version="0.1" -->
+<!ELEMENT Resource (Map)>
+
+<!ATTLIST Resource
+       name CDATA #REQUIRED
+       version CDATA #REQUIRED
+       author CDATA "Anonymous"
+       category CDATA "unsorted"
+>
+
+<!ELEMENT Map (Settings?, World)>
+
+<!ELEMENT Settings (Setting*)>
+<!ELEMENT Setting EMPTY>
+<!ATTLIST Setting name CDATA #REQUIRED>
+<!ATTLIST Setting value CDATA #REQUIRED>
+<!ELEMENT World (PlayerSpawn)>
+ 
+<!ELEMENT PlayerSpawn (PlayerSpawn+)>
+<!ELEMENT AISpawn (AISpawn*)>
+<!ELEMENT Ammo (Ammo*)>
+<!ELEMENT Scenery (Scenery*)>
+<!ELEMENT Treasure (Treasure*)>
+<!ELEMENT Secret (Secret*)>
+<!ELEMENT Health (Health*)>
+<!ELEMENT Door (Door*)>
+<!ELEMENT Wall (Point+, Door*, Secret*) >
+<!ELEMENT Point EMPTY>
+
+<!ATTLIST Map version CDATA #REQUIRED>
+
+<!ATTLIST PlayerSpawn x CDATA #REQUIRED>
+<!ATTLIST PlayerSpawn y CDATA #REQUIRED>
+<!ATTLIST PlayerSpawn angle CDATA "0">
+
+<!ATTLIST AISpawn x CDATA #REQUIRED>
+<!ATTLIST AISpawn y CDATA #REQUIRED>
+<!ATTLIST AISpawn angle CDATA "0">
+<!ATTLIST AISpawn level CDATA "5">
+
+<!ATTLIST Ammo x CDATA #REQUIRED>
+<!ATTLIST Ammo y CDATA #REQUIRED>
+<!ATTLIST Ammo angle CDATA "0">
+<!ATTLIST Ammo type CDATA #REQUIRED>
+
+<!ATTLIST Scenery x CDATA #REQUIRED>
+<!ATTLIST Scenery y CDATA #REQUIRED>
+<!ATTLIST Scenery angle CDATA "0">
+<!ATTLIST Scenery type CDATA #REQUIRED>
+
+<!ATTLIST Treasure x CDATA #REQUIRED>
+<!ATTLIST Treasure y CDATA #REQUIRED>
+<!ATTLIST Treasure angle CDATA "0">
+<!ATTLIST Treasure type CDATA #REQUIRED>
+
+<!ATTLIST Health x CDATA #REQUIRED>
+<!ATTLIST Health y CDATA #REQUIRED>
+<!ATTLIST Health angle CDATA "0">
+<!ATTLIST Health type CDATA #REQUIRED>
+
+<!ATTLIST Secret x CDATA #REQUIRED>
+<!ATTLIST Secret y CDATA #REQUIRED>
+<!ATTLIST Secret type CDATA #REQUIRED>
+
+<!ATTLIST Point x CDATA #REQUIRED>
+<!ATTLIST Point y CDATA #REQUIRED>
