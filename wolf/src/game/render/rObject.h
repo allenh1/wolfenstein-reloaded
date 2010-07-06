@@ -32,7 +32,6 @@
 #include <vector>
 
 #include "tSDL.h"
-#include "tSSL.h"
 #include "tGL.h"
 #include "tID.h"
 #include "tColor.h"
@@ -99,6 +98,9 @@ class rObject : public tID {
     rObject(rVertex coords);
     void addPoly(rPoly poly);
     void setCoords(rVertex coords);
+    virtual void preRender() = 0;
+    virtual void render() = 0;
+    virtual void postRender() = 0;
 private:
     rVertex _coords;
     vector <rPoly> _polys;
