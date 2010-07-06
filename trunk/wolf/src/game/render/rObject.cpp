@@ -4,11 +4,11 @@
 
  Wolfenstein Reloaded
  Developed by Morgan Jones <maclover201@me.com>
- File Description: Prototype for all other files
+ File Description: Base class for game objects
 
  **************************************************************************
 
- Copyright © 2010 Morgan Jones
+ Copyright © 2010 Morgan Jones, Hunter Allen
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -29,9 +29,180 @@
 
 #include "rObject.h"
 
-/*!
- *	This function is a test.
- *  Detailed description is in this block.
- *  @param  name A description of the parameter
- *  @return <optional>
- */
+rVertex::rVertex() {
+    _x = _y = _z = 0;
+}
+
+rVertex::rVertex(int32_t x, int32_t y, int32_t z) {
+    setCoords( x, y, z );
+}
+
+void rVertex::setCoords(int32_t x, int32_t y, int32_t z) {
+    _x = x;
+    _y = y;
+    _z = z;
+}
+
+int32_t rVertex::xPos() {
+    return _x;
+}
+
+int32_t rVertex::yPos() {
+    return _y;
+}
+
+int32_t rVertex::zPos() {
+    return _z;
+}
+
+rTexture::rTexture() {
+    _texid = 0;
+    _file = NULL;
+}
+
+rTexture::rTexture(tFile * file) {
+    _texid = 0;
+    _file = file;
+}
+
+GLuint rTexture::textureID() {
+    return _texid;
+}
+
+void rTexture::load() {
+    if( _file == NULL )
+        return;
+
+    /* Variables */
+    char * data = NULL;
+    size_t length = 0;
+    GLuint format = 0;
+    SDL_RWops * rw = NULL;
+    SDL_Surface * temp = NULL, *surface = NULL;
+    bool freeIt = true;
+
+    /* Get data and load it into SDL */
+    data = _file->data( length );
+
+    /* Read/write from memory */
+    if( data != NULL )
+        rw = SDL_RWFromMem( data, length );
+    else
+        rw = NULL;
+
+    /* Load it as an SDL_Surface */
+    temp = IMG_Load_RW( rw, 1 );
+
+    /* Check the image. If the surface is NULL, the image won't work. Fill it with white. */
+    if( temp == NULL )
+    {
+        temp = SDL_CreateRGBSurface( SDL_SWSURFACE, 64, 64, 32, 0, 0, 0, 0 );
+        if( temp == NULL )
+        {
+            cerr << "Fallback failed: File " << _file->path().leaf() << " failed to load (surface creation error)." << endl;
+            return;
+        }
+
+        if( SDL_FillRect( temp, NULL, 0xffffffff ) != 0 )
+        {
+            cerr << "Fallback failed: File " << _file->path().leaf() << " failed to load (rectangle filling error)." << endl;
+            return;
+        }
+    }
+
+    /* Normalize image */
+    surface = SDL_DisplayFormat( temp );
+
+    /* If the normalization doesn't work, use the old one. */
+    if( surface == NULL )
+    {
+        surface = temp;
+        surface->refcount++;
+        freeIt = false;
+    }
+
+    /* Free memory */
+    if( data )
+    {
+        delete[] data;
+        data = NULL;
+    }
+    if( temp && freeIt )
+    {
+        SDL_FreeSurface( temp );
+        temp = NULL;
+    }
+
+    /* Set texture parameters */
+    glBindTexture( GL_TEXTURE_2D, _texid );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+
+    /* Determine pixel format */
+    if( surface->format->BitsPerPixel == 32 )
+        format = GL_RGBA;
+    else
+        format = GL_RGB;
+
+    /* Make the texture - finally */
+    SDL_LockSurface( surface );
+    glTexImage2D( GL_TEXTURE_2D, 0, 3, surface->w, surface->h, 0, format, GL_BYTE, surface->pixels );
+    SDL_UnlockSurface( surface );
+
+    /* Free the surface */
+    if( surface )
+    {
+        SDL_FreeSurface( surface );
+        surface = NULL;
+    }
+}
+
+void rTexture::load(tFile * file) {
+    _file = file;
+    load();
+}
+
+rPoly::rPoly() {
+    _visible = true;
+}
+
+rPoly::rPoly(rTexture texture) {
+    _visible = true;
+    setTexture( texture );
+}
+
+void rPoly::addVertex(rVertex vertex) {
+    _vertices.push_back( vertex );
+}
+
+void rPoly::setTexture(rTexture texture) {
+    _texture = texture;
+}
+
+void rPoly::changeVisibility(bool visibility) {
+    _visible = visibility;
+}
+
+rTexture rPoly::texture() {
+    return _texture;
+}
+
+bool rPoly::isVisible() {
+    return _visible;
+}
+
+rObject::rObject() {
+    _coords.setCoords( 0, 0, 0 );
+}
+
+rObject::rObject(rVertex coords) {
+    setCoords( coords );
+}
+
+void rObject::addPoly(rPoly poly) {
+    _polys.push_back( poly );
+}
+
+void rObject::setCoords(rVertex coords) {
+    _coords = coords;
+}

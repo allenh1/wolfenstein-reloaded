@@ -56,6 +56,7 @@
 #include "tColor.h"
 #include "tError.h"
 #include "tRandom.h"
+#include "tMemory.h"
 
 #ifndef WOLF_DIRECTORIES_H
 #define WOLF_DIRECTORIES_H
@@ -158,6 +159,7 @@ public:
 	void erase();
 	void openMe();
 	void exit();
+	char * data(size_t &size);
 private:
 	tDirectoryBase * _directory;
 };

@@ -490,6 +490,23 @@ void tFile::exit() {
 }
 
 /*!
+ *	Returns a tPointer to all the data
+ */
+
+char * tFile::data(size_t &size) {
+    char * ret = NULL;
+    if( !exists( _path ) || !is_open() || !good() )
+        return NULL;
+
+    seekg( 0, ios::end );
+    size = tellg();
+    ret = new char[size];
+    read( ret, size );
+
+    return ret;
+}
+
+/*!
  *	Recursively opens all directories registered statically.
  */
 
