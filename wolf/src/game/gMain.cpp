@@ -38,7 +38,7 @@ namespace Game { static Main::mThread gMain( Game::gSetup, Game::gLoop, Game::gC
 
 void Game::gSetup()
 {
-	cout << "Hello from the game thread!" << endl;
+	rApplicationScreen.initDisplay( 1024, 768, 32, false );
 }
 
 /*!
