@@ -30,6 +30,7 @@
 #include "defs.h"
 
 #include "tSDL.h"
+#include "tGL.h"
 
 #ifndef WOLF_SCREEN_H
 #define WOLF_SCREEN_H
