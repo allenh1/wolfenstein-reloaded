@@ -89,4 +89,5 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 	}
 
 	// Start setting up GL stuff
+	glClear( GL_COLOR_BUFFER_BIT );
 }
