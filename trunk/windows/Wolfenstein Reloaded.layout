@@ -11,10 +11,10 @@
 		<Cursor position="1010" topLine="10" />
 	</File>
 	<File name="..\wolf\src\game\render\rObject.cpp" open="1" top="0" tabpos="25">
-		<Cursor position="2459" topLine="35" />
+		<Cursor position="1081" topLine="44" />
 	</File>
-	<File name="..\wolf\src\game\render\rObject.h" open="1" top="0" tabpos="28">
-		<Cursor position="1583" topLine="74" />
+	<File name="..\wolf\src\game\render\rObject.h" open="1" top="1" tabpos="28">
+		<Cursor position="2106" topLine="66" />
 	</File>
 	<File name="..\wolf\src\game\render\rRender.cpp" open="1" top="0" tabpos="29">
 		<Cursor position="328" topLine="0" />
@@ -101,7 +101,7 @@
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="..\wolf\src\tools\tResource.cpp" open="1" top="0" tabpos="34">
-		<Cursor position="705" topLine="53" />
+		<Cursor position="1696" topLine="44" />
 	</File>
 	<File name="..\wolf\src\tools\tSDL.h" open="1" top="0" tabpos="6">
 		<Cursor position="1202" topLine="0" />
