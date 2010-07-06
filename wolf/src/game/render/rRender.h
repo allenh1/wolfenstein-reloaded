@@ -30,6 +30,7 @@
 #include "defs.h"
 #include "rObject.h"
 #include <list>
+#include "tID.h"
 
 #ifndef WOLF_RENDER_H
 #define WOLF_RENDER_H
@@ -38,11 +39,9 @@
  *	This class handles the rendering of objects.
  */
 
-class rRender {
+class rRender : public tIDManager <rObject> {
     public:
         static void renderAll();
-    private:
-        static list <rObject*> _objects;
 };
 
 #endif /* WOLF_RENDER_H */

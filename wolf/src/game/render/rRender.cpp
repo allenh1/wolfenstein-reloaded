@@ -30,7 +30,6 @@
 
 #include "rRender.h"
 
-list <rObject*> rRender::_objects;
 
 /*!
  *	This function renders all objects and displays them on the screen.
@@ -40,7 +39,9 @@ list <rObject*> rRender::_objects;
 
 void rRender::renderAll()
 {
-    for( list<rObject*>::iterator it = _objects.begin(); it != _objects.end(); it++ ) {
+    glClearColor ( 0, 0, 0, 1 );
+    glClear( GL_COLOR_BUFFER_BIT );
+    for( tIDList<rObject*>::iterator it = list()->begin(); it != list()->end(); it++ ) {
         (*it)->preRender();
         (*it)->render();
         (*it)->postRender();

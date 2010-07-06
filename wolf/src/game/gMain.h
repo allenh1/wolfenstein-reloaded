@@ -33,6 +33,7 @@
 #include "tDirectories.h"
 #include "tRandom.h"
 #include "rScreen.h"
+#include "rRender.h"
 
 #ifndef WOLF_GAME_MAIN_H
 #define WOLF_GAME_MAIN_H
