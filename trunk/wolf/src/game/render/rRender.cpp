@@ -27,9 +27,7 @@
 
  */
 
-
 #include "rRender.h"
-
 
 /*!
  *	This function renders all objects and displays them on the screen.
@@ -39,12 +37,23 @@
 
 void rRender::renderAll()
 {
-    glClearColor ( 0, 0, 0, 1 );
-    glClear( GL_COLOR_BUFFER_BIT );
+    /* Clear the screen */
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+    /* Push the matrix */
+    glPushMatrix();
+
+    /* Render everything */
     for( tIDList<rObject*>::iterator it = list()->begin(); it != list()->end(); it++ ) {
         (*it)->preRender();
         (*it)->render();
         (*it)->postRender();
     }
+
+    /* Pop the matrix */
+    glPopMatrix();
+
+    /* Swap buffers */
+    SDL_GL_SwapBuffers();
 }
 

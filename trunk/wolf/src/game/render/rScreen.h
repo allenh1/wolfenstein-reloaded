@@ -42,6 +42,7 @@
 class rScreen {
 public:
     static void initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen);
+    static void releaseDisplay();
 private:
     static uint32_t _width, _height, _depth, _vflags, _fullScreen;
     static SDL_Surface * _screen;
