@@ -30,15 +30,21 @@
 #include "rScreen.h"
 
 uint32_t rScreen::_width, rScreen::_height, rScreen::_depth, rScreen::_vflags, rScreen::_fullScreen;
-SDL_Surface * rScreen::_screen;
+SDL_Surface * rScreen::_screen = NULL;
 const SDL_VideoInfo * rScreen::_videoInfo;
 
 void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen) {
+    /* Set variables */
+    _width = width;
+    _height = height;
+    _depth = depth;
+    _fullScreen = fullScreen;
+
     /* Set GL attributes */
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 	SDL_GL_SetAttribute( SDL_GL_ACCELERATED_VISUAL, 1 );
-	SDL_GL_SetAttribute( SDL_GL_BUFFER_SIZE, depth );
-	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, depth );
+	SDL_GL_SetAttribute( SDL_GL_BUFFER_SIZE, _depth );
+	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, _depth );
 	SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
 	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
 	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
@@ -46,8 +52,7 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 
 	_videoInfo = SDL_GetVideoInfo();
 
-    if ( !_videoInfo )
-	{
+    if ( !_videoInfo ) {
 		cerr << "SDL Error: Error getting video info: " << SDL_GetError() << endl;
 		exit( EXIT_FAILURE );
 	}
@@ -69,15 +74,36 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 	if( _fullScreen )
 		_vflags |= SDL_FULLSCREEN;
 
-    /* Set the surface */
-	_screen = SDL_SetVideoMode( _width, _height, _depth, _vflags );
+    /* Optionally free the surface if we're changing the video mode */
+    if( _screen )
+        SDL_FreeSurface( _screen );
 
-	if( _screen == NULL )
-	{
-		cerr << "SDL Error: setting video mode: " << SDL_GetError() << endl;
+    /* Set the surface */
+    _screen = SDL_SetVideoMode( _width, _height, _depth, _vflags );
+
+	if( _screen == NULL ) {
+		cerr << "SDL Error: Setting video mode failed: " << SDL_GetError() << endl;
 		exit( EXIT_FAILURE );
 	}
 
-	// Start setting up GL stuff
-	glClear( GL_COLOR_BUFFER_BIT );
+	/* OpenGL setup: Clear color and depth buffers */
+    glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+	glClearDepth( 1.0f );
+
+	/* OpenGL setup: Finish clearing the screen */
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+	/* OpenGL setup: GL perspective correction and other cool stuff */
+	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
+	glEnable( GL_DEPTH_TEST );
+	glDepthFunc( GL_LESS );
+	glShadeModel( GL_SMOOTH );
+}
+
+void rScreen::releaseDisplay() {
+    if( _screen )
+    {
+        SDL_FreeSurface( _screen );
+        _screen = NULL;
+    }
 }

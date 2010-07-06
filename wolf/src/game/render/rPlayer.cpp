@@ -4,11 +4,11 @@
 
  Wolfenstein Reloaded
  Developed by Morgan Jones <maclover201@me.com>
- File Description: The entry point for the game thread.
+ File Description: Player rendering code
 
  **************************************************************************
 
- Copyright Â© 2010 Morgan Jones
+ Copyright © 2010 Morgan Jones
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,48 +27,11 @@
 
  */
 
-#include "gMain.h"
-
-/* The game thread */
-namespace Game { static Main::mThread gMain( Game::gSetup, Game::gLoop, Game::gCleanup, Game::gWatchdogTimer ); }
+#include "rPlayer.h"
 
 /*!
- *	Sets up the game thread.
+ *	This function is a test.
+ *  Detailed description is in this block.
+ *  @param  name A description of the parameter
+ *  @return <optional>
  */
-
-void Game::gSetup()
-{
-	rScreen::initDisplay( 640, 480, 32, false );
-}
-
-/*!
- *	Cleans up the game thread.
- */
-
-void Game::gCleanup()
-{
-	rScreen::releaseDisplay();
-}
-
-/*!
- *	The game loop.
- */
-
-int Game::gLoop(void * data)
-{
-	/* Return variable */
-	int ret = 0;
-
-	/* Game loop */
-	while( !rbi( gMain.opts(), THREAD_STOP_BIT ) && !rbi( gMain.opts(), THREAD_KILL_BIT ) )
-	{
-		/* Main loop code here... */
-        rRender::renderAll();
-
-		/* Kick the watchdog */
-		gMain.kick();
-	}
-
-	/* Return */
-	return ret;
-}
