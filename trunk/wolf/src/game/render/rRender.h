@@ -28,6 +28,8 @@
  */
 
 #include "defs.h"
+#include "rObject.h"
+#include <list>
 
 #ifndef WOLF_RENDER_H
 #define WOLF_RENDER_H
@@ -37,7 +39,10 @@
  */
 
 class rRender {
-
+    public:
+        static void renderAll();
+    private:
+        static list <rObject*> _objects;
 };
 
 #endif /* WOLF_RENDER_H */

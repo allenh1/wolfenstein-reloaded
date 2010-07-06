@@ -3,7 +3,7 @@
  **************************************************************************
 
  Wolfenstein Reloaded
- Developed by Morgan Jones <maclover201@me.com>
+ Developed by Morgan Jones <maclover201@me.com>, Hunter Allen <hunterallen40@gmail.com>
  File Description: Base class for game objects
 
  **************************************************************************

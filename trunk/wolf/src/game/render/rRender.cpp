@@ -8,7 +8,7 @@
 
  **************************************************************************
 
- Copyright © 2010 Hunter Allen, Morgan Jones
+ Copyright © 2010 Hunter Alle
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,11 +27,23 @@
 
  */
 
+
 #include "rRender.h"
 
+list <rObject*> rRender::_objects;
+
 /*!
- *	This function is a test.
- *  Detailed description is in this block.
+ *	This function renders all objects and displays them on the screen.
  *  @param  name A description of the parameter
  *  @return <optional>
  */
+
+void rRender::renderAll()
+{
+    for( list<rObject*>::iterator it = _objects.begin(); it != _objects.end(); it++ ) {
+        (*it)->preRender();
+        (*it)->render();
+        (*it)->postRender();
+    }
+}
+
