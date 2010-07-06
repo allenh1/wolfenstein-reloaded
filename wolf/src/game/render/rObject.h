@@ -8,7 +8,7 @@
 
  **************************************************************************
 
- Copyright © 2010 Morgan Jones
+ Copyright © 2010 Morgan Jones, Hunter Allen
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -29,15 +29,79 @@
 
 #include "defs.h"
 
+#include <vector>
+
+#include "tSDL.h"
+#include "tSSL.h"
+#include "tGL.h"
+#include "tID.h"
+#include "tColor.h"
+#include "tDirectories.h"
+
 #ifndef WOLF_OBJECT_H
 #define WOLF_OBJECT_H
+
+/*!
+ *	This class handles vertices.
+ */
+
+class rVertex {
+public:
+    rVertex();
+    rVertex(int32_t x, int32_t y, int32_t z);
+    void setCoords(int32_t x, int32_t y, int32_t z);
+    int32_t xPos(), yPos(), zPos();
+private:
+    int32_t _x, _y, _z;
+ };
+
+/*!
+ *	This class is a texture.
+ */
+
+class rTexture {
+public:
+    rTexture();
+    rTexture(tFile * file);
+    GLuint textureID();
+    void load();
+    void load(tFile * file);
+private:
+    GLuint _texid;
+    tFile * _file;
+ };
+
+/*!
+ *	This class is a polygon.
+ */
+
+class rPoly {
+public:
+    rPoly();
+    rPoly(rTexture texture);
+    void addVertex(rVertex vertex);
+    void setTexture(rTexture texture);
+    void changeVisibility(bool visibility);
+    rTexture texture();
+    bool isVisible();
+private:
+    vector <rVertex> _vertices;
+    rTexture _texture;
+    bool _visible;
+ };
 
 /*!
  *	This class handles objects in the game.
  */
 
-class rObject {
-
+class rObject : public tID {
+    rObject();
+    rObject(rVertex coords);
+    void addPoly(rPoly poly);
+    void setCoords(rVertex coords);
+private:
+    rVertex _coords;
+    vector <rPoly> _polys;
 };
 
 #endif /* WOLF_OBJECT_H */

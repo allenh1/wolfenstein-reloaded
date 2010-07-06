@@ -2429,7 +2429,7 @@
 	<SDL/begin_code.h>
 	<SDL/close_code.h>
 
-1278353587 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tdirectories.h
+1278370941 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tdirectories.h
 	"defs.h"
 	<string>
 	<fstream>
@@ -2449,6 +2449,7 @@
 	"tColor.h"
 	"tError.h"
 	"tRandom.h"
+	"tMemory.h"
 
 1278353650 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\include\boost\filesystem\path.hpp
 	<boost/filesystem/config.hpp>
@@ -5250,7 +5251,7 @@
 1278353587 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tconfig.h
 	"defs.h"
 
-1278353587 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tdirectories.cpp
+1278370987 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tdirectories.cpp
 	"tDirectories.h"
 
 1278353587 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\terror.cpp
@@ -5267,10 +5268,10 @@
 	<map>
 	"tDirectories.h"
 
-1278353587 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tmemory.cpp
+1278365324 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tmemory.cpp
 	"tMemory.h"
 
-1278353587 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tmemory.h
+1278370823 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tmemory.h
 	"defs.h"
 	<memory>
 
@@ -5308,4 +5309,34 @@
 	<direct.h>
 	"SDL.h"
 	"SDL_main.h"
+
+1278378727 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.cpp
+	"rObject.h"
+
+1278389479 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.h
+	"defs.h"
+	<vector>
+	"tSDL.h"
+	"tSSL.h"
+	"tGL.h"
+	"tID.h"
+	"tColor.h"
+	"tDirectories.h"
+
+1278362469 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rrender.cpp
+	"rRender.h"
+
+1278362469 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rrender.h
+	"defs.h"
+
+1278362739 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tgl.h
+	"defs.h"
+	<GL/gl.h>
+	<GL/glu.h>
+
+1278389434 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\tools\tssl.h
+	"defs.h"
+	<openssl/sha.h>
+
+1277082832 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\include\openssl\sha.h
 
