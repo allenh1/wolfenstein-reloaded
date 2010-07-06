@@ -41,15 +41,11 @@
 
 class rScreen {
 public:
-    rScreen();
-    rScreen(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen);
-    void initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen);
+    static void initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen);
 private:
-    uint32_t _width, _height, _depth, _vflags, _fullScreen;
-    SDL_Surface * _screen;
-    const SDL_VideoInfo *_videoInfo;
+    static uint32_t _width, _height, _depth, _vflags, _fullScreen;
+    static SDL_Surface * _screen;
+    static const SDL_VideoInfo *_videoInfo;
 };
-
-static rScreen rApplicationScreen;
 
 #endif /* WOLF_PROTOTYPE_H */

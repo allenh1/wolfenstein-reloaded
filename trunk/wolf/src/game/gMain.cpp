@@ -38,7 +38,7 @@ namespace Game { static Main::mThread gMain( Game::gSetup, Game::gLoop, Game::gC
 
 void Game::gSetup()
 {
-	rApplicationScreen.initDisplay( 1024, 768, 32, false );
+	rScreen::initDisplay( 1024, 768, 32, false );
 }
 
 /*!
