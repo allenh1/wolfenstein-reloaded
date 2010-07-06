@@ -29,19 +29,9 @@
 
 #include "rScreen.h"
 
-rScreen::rScreen() {
-    _width = _height = _depth = 0;
-    _fullScreen = false;
-    _screen = NULL;
-}
-
-rScreen::rScreen(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen) {
-    _width = width;
-    _height = height;
-    _depth = depth;
-    _fullScreen = fullScreen;
-    _screen = NULL;
-}
+uint32_t rScreen::_width, rScreen::_height, rScreen::_depth, rScreen::_vflags, rScreen::_fullScreen;
+SDL_Surface * rScreen::_screen;
+const SDL_VideoInfo * rScreen::_videoInfo;
 
 void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen) {
     /* Set GL attributes */

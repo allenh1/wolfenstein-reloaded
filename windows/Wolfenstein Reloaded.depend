@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 1 %9	
 
-1278438796 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\gmain.cpp
+1278440161 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\gmain.cpp
 	"gMain.h"
 
 1277082832 
@@ -5366,7 +5366,7 @@
 
 1277082832 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\include\openssl\sha.h
 
-1278439786 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.h
+1278440190 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.h
 	"defs.h"
 	"tSDL.h"
 	"tGL.h"
