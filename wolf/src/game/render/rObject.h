@@ -30,6 +30,7 @@
 #include "defs.h"
 
 #include <vector>
+#include <algorithm>
 
 #include "tSDL.h"
 #include "tGL.h"
@@ -85,6 +86,7 @@ public:
     void changeVisibility(bool visibility);
     rTexture texture();
     bool isVisible();
+    vector <rVertex> vertices();
 private:
     vector <rVertex> _vertices;
     rTexture _texture;
@@ -102,13 +104,12 @@ public:
     void setCoords(rPoint coords);
     void setColor(tColor color);
     void recalcPolys();
-protected:
     void addPoly(rPoly poly);
     virtual void preRender() = 0;
     virtual void render() = 0;
     virtual void postRender() = 0;
-private:
-    rPoint _coords;
+protected:
+    rPoint _coords, _ctr, _max, _min;
     tColor _color;
     vector <rPoly> _polys;
 };
