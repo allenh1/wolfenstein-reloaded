@@ -48,8 +48,8 @@ protected:
     void preRender();
     void render();
     void postRender();
-private:
     float _width, _height, _depth;
+private:
     rTexture _tex;
 };
 
