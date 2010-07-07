@@ -62,7 +62,7 @@ int Game::gLoop(void * data)
 	/* Game loop */
 	while( !rbi( gMain.opts(), THREAD_STOP_BIT ) && !rbi( gMain.opts(), THREAD_KILL_BIT ) )
 	{
-		/* Main loop code here... */
+		/* Render everything */
         rRender::renderAll();
 
 		/* Kick the watchdog */

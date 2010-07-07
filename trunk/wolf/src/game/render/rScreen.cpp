@@ -90,14 +90,22 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
     glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
 	glClearDepth( 1.0f );
 
-	/* OpenGL setup: Finish clearing the screen */
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
-
 	/* OpenGL setup: GL perspective correction and other cool stuff */
 	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
 	glEnable( GL_DEPTH_TEST );
+	glEnable( GL_BLEND );
 	glDepthFunc( GL_LESS );
 	glShadeModel( GL_SMOOTH );
+
+    /* OpenGL setup: Finish clearing the screen */
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+	/* OpenGL setup: GL perspective */
+	glViewport( 0, 0, (GLsizei)width, (GLsizei)height );
+    glMatrixMode( GL_PROJECTION );
+    glLoadIdentity();
+    gluPerspective( 180, (GLfloat)width / (GLfloat)height, deltaView, 200.0 );
+    glMatrixMode( GL_MODELVIEW );
 }
 
 void rScreen::releaseDisplay() {

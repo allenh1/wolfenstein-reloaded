@@ -40,6 +40,12 @@ void rRender::renderAll()
     /* Clear the screen */
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+    /* Load identity */
+    glLoadIdentity();
+
+    /* Move the camera */
+    rDefaultPlayer.updateCamera();
+
     /* Push the matrix */
     glPushMatrix();
 

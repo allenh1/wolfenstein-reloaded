@@ -28,8 +28,11 @@
  */
 
 #include "defs.h"
-#include "rObject.h"
+
 #include <list>
+
+#include "rObject.h"
+#include "rPlayer.h"
 #include "tID.h"
 
 #ifndef WOLF_RENDER_H
