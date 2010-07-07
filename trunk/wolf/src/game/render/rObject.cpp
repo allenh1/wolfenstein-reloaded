@@ -191,6 +191,10 @@ bool rPoly::isVisible() {
     return _visible;
 }
 
+vector <rVertex> rPoly::vertices() {
+    return _vertices;
+}
+
 rObject::rObject() {
     _coords.setCoords( 0, 0, 0 );
 }
@@ -212,5 +216,26 @@ void rObject::setColor(tColor color) {
 }
 
 void rObject::recalcPolys() {
-
+    vector <float> xBag;
+    vector <float> yBag;
+    vector <float> zBag;
+    for( vector <rPoly>::iterator it = _polys.begin(); it != _polys.end(); it++ )
+    {
+        vector <rVertex> vertices = it->vertices();
+        for( vector <rVertex>::iterator ti = vertices.begin(); ti != vertices.end(); ti++ )
+        {
+            xBag.push_back( ti->xPos() );
+            yBag.push_back( ti->yPos() );
+            zBag.push_back( ti->zPos() );
+        }
+    }
+    float max_x = *max_element( xBag.begin(), xBag.end() );
+    float max_y = *max_element( yBag.begin(), yBag.end() );
+    float max_z = *max_element( zBag.begin(), zBag.end() );
+    float min_x = *min_element( xBag.begin(), xBag.end() );
+    float min_y = *min_element( yBag.begin(), yBag.end() );
+    float min_z = *min_element( zBag.begin(), zBag.end() );
+    _ctr = rVertex( max_x - (max_x - min_x) / 2.0, max_y - (max_y - min_y) / 2.0, max_z - (max_z - min_z) / 2.0 );
+    _max = rVertex( max_x, max_y, max_z );
+    _min = rVertex( min_x, min_y, min_z );
 }

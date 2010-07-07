@@ -54,7 +54,6 @@ void rWall::render() {
     /* Front Face */
     glBindTexture( GL_TEXTURE_2D, front->TexID() );
 
-
     /* Start the quad */
     glBegin( GL_QUADS );
 

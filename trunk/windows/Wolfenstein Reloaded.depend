@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
 1 %9	
 
-1278443842 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\gmain.cpp
+1278463316 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\gmain.cpp
 	"gMain.h"
 
 1277082832 
@@ -5346,12 +5346,13 @@
 	"rPlayer.h"
 	"tID.h"
 
-1278452276 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.cpp
+1278522516 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.cpp
 	"rObject.h"
 
-1278452277 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.h
+1278522842 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.h
 	"defs.h"
 	<vector>
+	<algorithm>
 	"tSDL.h"
 	"tGL.h"
 	"tID.h"
@@ -5375,7 +5376,7 @@
 	"rPlayer.h"
 	"tGL.h"
 
-1278442751 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.cpp
+1278464125 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.cpp
 	"rScreen.h"
 
 1278462445 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rplayer.cpp
