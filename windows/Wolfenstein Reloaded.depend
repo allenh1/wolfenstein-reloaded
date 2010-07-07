@@ -5336,19 +5336,20 @@
 	"SDL.h"
 	"SDL_main.h"
 
-1278443904 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rrender.cpp
+1278462521 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rrender.cpp
 	"rRender.h"
 
-1278441227 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rrender.h
+1278462521 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rrender.h
 	"defs.h"
-	"rObject.h"
 	<list>
+	"rObject.h"
+	"rPlayer.h"
 	"tID.h"
 
-1278439495 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.cpp
+1278452276 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.cpp
 	"rObject.h"
 
-1278439495 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.h
+1278452277 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\robject.h
 	"defs.h"
 	<vector>
 	"tSDL.h"
@@ -5368,11 +5369,21 @@
 
 1277082832 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\include\openssl\sha.h
 
-1278442714 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.h
+1278463144 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.h
 	"defs.h"
 	"tSDL.h"
+	"rPlayer.h"
 	"tGL.h"
 
 1278442751 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rscreen.cpp
 	"rScreen.h"
+
+1278462445 source:c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rplayer.cpp
+	"rPlayer.h"
+
+1278462473 c:\documents and settings\student\desktop\wolfenstein-reloaded\wolf\src\game\render\rplayer.h
+	"defs.h"
+	"rObject.h"
+	"tID.h"
+	<cmath>
 

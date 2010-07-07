@@ -29,9 +29,56 @@
 
 #include "rPlayer.h"
 
-/*!
- *	This function is a test.
- *  Detailed description is in this block.
- *  @param  name A description of the parameter
- *  @return <optional>
- */
+rPlayer::rPlayer() {
+    _upA = _viewA = 0;
+}
+
+void rPlayer::setPosition(rPoint position) {
+    _position = position;
+}
+
+void rPlayer::setAngles(float up, float view) {
+    while( up >= 360.0 )
+        up -= 360.0;
+    while( view >= 360.0 )
+        view -= 360.0;
+
+    while( up < 0.0 )
+        up += 360.0;
+    while( view < 0.0 )
+        view += 360.0;
+
+    _upA = up;
+    _viewA = view;
+}
+
+void rPlayer::updateCamera() {
+    _up.setCoords  (
+                      _position.xPos() + cosf( _upA * M_PI/180 ) * 180/M_PI,
+                      _position.yPos() + sinf( _upA * M_PI/180 ) * 180/M_PI,
+                      _position.zPos()
+                   );
+    _view.setCoords(
+                      _position.xPos() + cosf( _viewA * M_PI/180 ) * 180/M_PI,
+                      _position.yPos(),
+                      _position.zPos() + sinf( _viewA * M_PI/180 ) * 180/M_PI
+                   );
+    gluLookAt      (
+                      _position.xPos(), _position.yPos(), _position.zPos(),
+                      _view.xPos(), _view.yPos(), _view.zPos(),
+                      _up.xPos(), _up.yPos(), _up.zPos()
+                   );
+}
+
+void rPlayerManager::renderAllViewports() {
+    for( tIDList<rPlayer*>::iterator it = list()->begin(); it != list()->end(); it++ )
+        (*it)->updateCamera();
+}
+
+void rPlayerManager::addPlayer(rPlayer * player) {
+    pushID( player );
+}
+
+void rPlayerManager::removePlayer(rPlayer * player) {
+    deleteID( player );
+}

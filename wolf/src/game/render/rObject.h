@@ -44,15 +44,17 @@
  *	This class handles vertices.
  */
 
-class rVertex {
+class rPoint {
 public:
-    rVertex();
-    rVertex(int32_t x, int32_t y, int32_t z);
-    void setCoords(int32_t x, int32_t y, int32_t z);
-    int32_t xPos(), yPos(), zPos();
+    rPoint();
+    rPoint(float x, float y, float z);
+    void setCoords(float x, float y, float z);
+    float xPos(), yPos(), zPos();
 private:
-    int32_t _x, _y, _z;
+    float _x, _y, _z;
  };
+
+typedef rPoint rVertex;
 
 /*!
  *	This class is a texture.
@@ -94,16 +96,20 @@ private:
  */
 
 class rObject : public tID {
-    public:
-        rObject();
-        rObject(rVertex coords);
-        void addPoly(rPoly poly);
-        void setCoords(rVertex coords);
-        virtual void preRender() = 0;
-        virtual void render() = 0;
-        virtual void postRender() = 0;
+public:
+    rObject();
+    rObject(rPoint coords);
+    void setCoords(rPoint coords);
+    void setColor(tColor color);
+    void recalcPolys();
+protected:
+    void addPoly(rPoly poly);
+    virtual void preRender() = 0;
+    virtual void render() = 0;
+    virtual void postRender() = 0;
 private:
-    rVertex _coords;
+    rPoint _coords;
+    tColor _color;
     vector <rPoly> _polys;
 };
 

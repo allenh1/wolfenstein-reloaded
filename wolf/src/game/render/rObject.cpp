@@ -29,29 +29,29 @@
 
 #include "rObject.h"
 
-rVertex::rVertex() {
+rPoint::rPoint() {
     _x = _y = _z = 0;
 }
 
-rVertex::rVertex(int32_t x, int32_t y, int32_t z) {
+rPoint::rPoint(float x, float y, float z) {
     setCoords( x, y, z );
 }
 
-void rVertex::setCoords(int32_t x, int32_t y, int32_t z) {
+void rPoint::setCoords(float x, float y, float z) {
     _x = x;
     _y = y;
     _z = z;
 }
 
-int32_t rVertex::xPos() {
+float rPoint::xPos() {
     return _x;
 }
 
-int32_t rVertex::yPos() {
+float rPoint::yPos() {
     return _y;
 }
 
-int32_t rVertex::zPos() {
+float rPoint::zPos() {
     return _z;
 }
 
@@ -195,7 +195,7 @@ rObject::rObject() {
     _coords.setCoords( 0, 0, 0 );
 }
 
-rObject::rObject(rVertex coords) {
+rObject::rObject(rPoint coords) {
     setCoords( coords );
 }
 
@@ -203,6 +203,14 @@ void rObject::addPoly(rPoly poly) {
     _polys.push_back( poly );
 }
 
-void rObject::setCoords(rVertex coords) {
+void rObject::setCoords(rPoint coords) {
     _coords = coords;
+}
+
+void rObject::setColor(tColor color) {
+    _color = color;
+}
+
+void rObject::recalcPolys() {
+
 }

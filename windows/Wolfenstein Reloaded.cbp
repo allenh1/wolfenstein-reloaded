@@ -91,10 +91,14 @@
 		<Unit filename="..\wolf\src\game\gMain.h" />
 		<Unit filename="..\wolf\src\game\render\rObject.cpp" />
 		<Unit filename="..\wolf\src\game\render\rObject.h" />
+		<Unit filename="..\wolf\src\game\render\rPlayer.cpp" />
+		<Unit filename="..\wolf\src\game\render\rPlayer.h" />
 		<Unit filename="..\wolf\src\game\render\rRender.cpp" />
 		<Unit filename="..\wolf\src\game\render\rRender.h" />
 		<Unit filename="..\wolf\src\game\render\rScreen.cpp" />
 		<Unit filename="..\wolf\src\game\render\rScreen.h" />
+		<Unit filename="..\wolf\src\game\render\rWall.cpp" />
+		<Unit filename="..\wolf\src\game\render\rWall.h" />
 		<Unit filename="..\wolf\src\include\RandomLib\ExactExponential.hpp" />
 		<Unit filename="..\wolf\src\include\RandomLib\ExactPower.hpp" />
 		<Unit filename="..\wolf\src\include\RandomLib\ExponentialDistribution.hpp" />

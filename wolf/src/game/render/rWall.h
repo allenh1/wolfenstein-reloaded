@@ -4,7 +4,7 @@
 
  Wolfenstein Reloaded
  Developed by Morgan Jones <maclover201@me.com>
- File Description: Screen management
+ File Description: Prototype for all other files
 
  **************************************************************************
 
@@ -29,25 +29,28 @@
 
 #include "defs.h"
 
-#include "tSDL.h"
-#include "rPlayer.h"
-#include "tGL.h"
+#include "rObject.h"
 
-#ifndef WOLF_SCREEN_H
-#define WOLF_SCREEN_H
+#ifndef WOLF_WALL_H
+#define WOLF_WALL_H
 
 /*!
- *	This class manages one screen.
+ *	This class is a test.
+ *  Detailed description is in this block.
  */
 
-class rScreen {
+class rWall : public rObject {
 public:
-    static void initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool fullScreen);
-    static void releaseDisplay();
+    rWall();
+    void setDims(float width, float height, float depth);
+    void setTexture(rTexture texture);
+protected:
+    void preRender();
+    void render();
+    void postRender();
 private:
-    static uint32_t _width, _height, _depth, _vflags, _fullScreen;
-    static SDL_Surface * _screen;
-    static const SDL_VideoInfo *_videoInfo;
+    float _width, _height, _depth;
+    rTexture _tex;
 };
 
 #endif /* WOLF_PROTOTYPE_H */
