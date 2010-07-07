@@ -34,6 +34,7 @@
 			<Add option="-Wall" />
 			<Add directory="..\wolf\src" />
 			<Add directory="..\wolf\src\game" />
+			<Add directory="..\wolf\src\game\engine" />
 			<Add directory="..\wolf\src\game\render" />
 			<Add directory="..\wolf\src\game\sound" />
 			<Add directory="..\wolf\src\include" />
@@ -87,6 +88,8 @@
 			<Add directory="..\wolf\lib\windows\zlib" />
 		</Linker>
 		<Unit filename="..\wolf\src\defs.h" />
+		<Unit filename="..\wolf\src\game\engine\eWall.cpp" />
+		<Unit filename="..\wolf\src\game\engine\eWall.h" />
 		<Unit filename="..\wolf\src\game\gMain.cpp" />
 		<Unit filename="..\wolf\src\game\gMain.h" />
 		<Unit filename="..\wolf\src\game\render\rObject.cpp" />
