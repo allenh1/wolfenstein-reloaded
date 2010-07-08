@@ -64,10 +64,12 @@ typedef rPoint rVertex;
 class rTexture {
 public:
     rTexture();
+    ~rTexture();
     rTexture(tFile * file);
     GLuint textureID();
     void load();
     void load(tFile * file);
+    void release();
 private:
     GLuint _texid;
     tFile * _file;
@@ -86,7 +88,7 @@ public:
     void changeVisibility(bool visibility);
     rTexture texture();
     bool isVisible();
-    vector <rVertex> vertices();
+    vector <rVertex> * vertices();
 private:
     vector <rVertex> _vertices;
     rTexture _texture;
@@ -104,14 +106,17 @@ public:
     void setCoords(rPoint coords);
     void setColor(tColor color);
     void recalcPolys();
-    void addPoly(rPoly poly);
     virtual void preRender() = 0;
     virtual void render() = 0;
     virtual void postRender() = 0;
 protected:
+    void addPoly(rPoly poly);
+    virtual void setInitialPolys() {}
     rPoint _coords, _ctr, _max, _min;
     tColor _color;
     vector <rPoly> _polys;
 };
+
+const float texCoords[8] = { 0, 0, 1, 0, 1, 1, 0, 1 };
 
 #endif /* WOLF_OBJECT_H */

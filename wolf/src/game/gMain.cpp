@@ -39,6 +39,15 @@ namespace Game { static Main::mThread gMain( Game::gSetup, Game::gLoop, Game::gC
 void Game::gSetup()
 {
 	rScreen::initDisplay( 640, 480, 32, false );
+	rWall * wall = new rWall;
+	rPlayer * player = new rPlayer;
+	wall->setDims( 10, 10, 10 );
+	wall->setCoords( rPoint( 20, 20, 20 ) );
+	wall->setColor( tColor( 255, 255, 255 ) );
+	wall->recalcPolys();
+
+	rRender::pushObject( wall );
+	rPlayerManager::addPlayer( player );
 }
 
 /*!

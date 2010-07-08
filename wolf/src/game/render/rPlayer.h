@@ -59,8 +59,6 @@ public:
     static void removePlayer(rPlayer * player);
 };
 
-static rPlayer rDefaultPlayer;
-
 const float deltaView = 1.0f;
 const float deltaUp   = 1.0f;
 

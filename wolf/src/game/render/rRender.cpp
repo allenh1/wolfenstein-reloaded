@@ -35,31 +35,37 @@
  *  @return <optional>
  */
 
-void rRender::renderAll()
-{
+void rRender::renderAll() {
     /* Clear the screen */
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
     /* Load identity */
-    glLoadIdentity();
+    //glLoadIdentity();
 
     /* Move the camera */
-    rDefaultPlayer.updateCamera();
-
-    /* Push the matrix */
-    glPushMatrix();
+    //rPlayerManager::renderAllViewports();
 
     /* Render everything */
     for( tIDList<rObject*>::iterator it = list()->begin(); it != list()->end(); it++ ) {
-        (*it)->preRender();
-        (*it)->render();
-        (*it)->postRender();
-    }
+        /* Set up a pointer */
+        rObject * object = *it;
 
-    /* Pop the matrix */
-    glPopMatrix();
+        /* Push the matrix */
+        glPushMatrix();
+
+        /* Call render code */
+        object->preRender();
+        object->render();
+        object->postRender();
+
+        /* Pop the matrix */
+        glPopMatrix();
+    }
 
     /* Swap buffers */
     SDL_GL_SwapBuffers();
 }
 
+void rRender::pushObject(rObject * object) {
+    pushID( object );
+}

@@ -65,8 +65,10 @@ void rPlayer::updateCamera() {
                    );
     gluLookAt      (
                       _position.xPos(), _position.yPos(), _position.zPos(),
-                      _view.xPos(), _view.yPos(), _view.zPos(),
-                      _up.xPos(), _up.yPos(), _up.zPos()
+                    0, 1, 0,
+                      //_view.xPos(), _view.yPos(), _view.zPos(),
+                   //   _up.xPos(), _up.yPos(), _up.zPos()
+                    0, 1, 0
                    );
 }
 

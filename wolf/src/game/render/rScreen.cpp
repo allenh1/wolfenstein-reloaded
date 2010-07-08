@@ -42,13 +42,7 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 
     /* Set GL attributes */
 	SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
-	SDL_GL_SetAttribute( SDL_GL_ACCELERATED_VISUAL, 1 );
-	SDL_GL_SetAttribute( SDL_GL_BUFFER_SIZE, _depth );
-	SDL_GL_SetAttribute( SDL_GL_DEPTH_SIZE, _depth );
-	SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 8 );
-	SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 8 );
+	SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 4);
 
 	_videoInfo = SDL_GetVideoInfo();
 
@@ -58,7 +52,7 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 	}
 
 	/* SDL video flags */
-    _vflags  = SDL_OPENGL | SDL_HWPALETTE;
+    _vflags = SDL_OPENGL | SDL_HWPALETTE;
 
     /* Can we store surfaces in graphics memory? GPU accelerate it! */
     if( _videoInfo->hw_available )
@@ -79,7 +73,7 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
         SDL_FreeSurface( _screen );
 
     /* Set the surface */
-    _screen = SDL_SetVideoMode( _width, _height, _depth, _vflags );
+    _screen = SDL_SetVideoMode( _width, _height, 0, _vflags );
 
 	if( _screen == NULL ) {
 		cerr << "SDL Error: Setting video mode failed: " << SDL_GetError() << endl;
@@ -87,13 +81,16 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 	}
 
 	/* OpenGL setup: Clear color and depth buffers */
-    glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+    glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
 	glClearDepth( 1.0f );
+
+	/* OpenGL setup: glEnable calls */
+    glEnable( GL_DEPTH_TEST );
+	glEnable( GL_BLEND );
+	glEnable( GL_TEXTURE_2D );
 
 	/* OpenGL setup: GL perspective correction and other cool stuff */
 	glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
-	glEnable( GL_DEPTH_TEST );
-	glEnable( GL_BLEND );
 	glDepthFunc( GL_LESS );
 	glShadeModel( GL_SMOOTH );
 
@@ -102,9 +99,9 @@ void rScreen::initDisplay(uint32_t width, uint32_t height, uint32_t depth, bool 
 
 	/* OpenGL setup: GL perspective */
 	glViewport( 0, 0, (GLsizei)width, (GLsizei)height );
-    glMatrixMode( GL_PROJECTION );
+	glMatrixMode( GL_PROJECTION );
     glLoadIdentity();
-    gluPerspective( 180, (GLfloat)width / (GLfloat)height, deltaView, 200.0 );
+    gluPerspective( 45.0f, (float)width / (float)height, 1.0f, 200.0f );
     glMatrixMode( GL_MODELVIEW );
 }
 

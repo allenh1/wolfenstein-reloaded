@@ -43,8 +43,9 @@
  */
 
 class rRender : public tIDManager <rObject> {
-    public:
-        static void renderAll();
+public:
+    static void renderAll();
+    static void pushObject(rObject * object);
 };
 
 #endif /* WOLF_RENDER_H */

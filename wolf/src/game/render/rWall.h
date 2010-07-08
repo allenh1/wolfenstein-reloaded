@@ -45,6 +45,7 @@ public:
     void setDims(float width, float height, float depth);
     void setTexture(rTexture texture);
 protected:
+    void setInitialPolys();
     void preRender();
     void render();
     void postRender();
