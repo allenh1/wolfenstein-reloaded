@@ -43,6 +43,47 @@ void rWall::setTexture(rTexture texture) {
     _tex = texture;
 }
 
+void rWall::setInitialPolys() {
+    if( _width == 0.0f || _height == 0.0f || _depth == 0.0f )
+        return;
+
+    /* Add an assload of vertices */
+    rPoly faces[6];
+    faces[0].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
+    faces[0].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
+    faces[0].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
+    faces[0].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
+
+    faces[1].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[1].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[1].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[1].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
+
+    faces[2].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[2].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
+    faces[2].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
+    faces[2].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
+
+    faces[3].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
+    faces[3].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
+    faces[3].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[3].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
+
+    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
+    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
+
+    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
+    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
+    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
+
+    /* Define the polygons */
+    for( size_t a = 0; a < 6; a++ )
+        _polys.push_back( faces[a] );
+}
+
 void rWall::preRender() {
 
 }
@@ -51,118 +92,37 @@ void rWall::render() {
     /* Set the color */
     glColor4b( _color.r, _color.g, _color.b, _color.a );
 
-    /* Front Face */
-    glBindTexture( GL_TEXTURE_2D, front->TexID() );
+    /* Go through all polys */
+    for( vector <rPoly>::iterator it = _polys.begin(); it != _polys.end(); it++ )
+    {
+        /* Make pointer to a vector */
+        vector <rVertex> * vertices = it->vertices();
 
-    /* Start the quad */
-    glBegin( GL_QUADS );
+        /* Texture coordinate index */
+        size_t x = 0;
 
-    /* Bottom Left Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 1.0f ); glVertex3f( _position.xP, Y(), Z() );
-    /* Bottom Right Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 1.0f ); glVertex3f( X() + Width(), Y(), Z() );
-    /* Top Right Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 0.0f ); glVertex3f( X() + Width(), Y() + Height(), Z() );
-    /* Top Left Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 0.0f ); glVertex3f( X(), Y() + Height(), Z() );
+        /* Bind the texture */
+        //glBindTexture( GL_TEXTURE_2D, _tex.textureID() );
 
-    /* Finish the quad */
-    glEnd();
+        /* Start a quad */
+        glBegin( GL_QUADS );
 
-	/* Back Face */
-    glBindTexture( GL_TEXTURE_2D, back->TexID() );
+        /* Draw all vertices */
+        for( vector <rVertex>::iterator ti = vertices->begin(); ti != vertices->end(); ti++ )
+        {
+            /* Set the texture coordinates */
+            //glTexCoord2f( texCoords[x++], texCoords[x++] );
 
+            /* Make a vertex */
+            float x = ti->xPos();
+            float y = ti->yPos();
+            float z = ti->zPos();
+            glVertex3f( x, y, z );
+        }
 
-    /* Start the quad */
-    glBegin( GL_QUADS );
-
-    /* Bottom Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 0.0f ); glVertex3f( X(), Y(), Z() + Depth() );
-    /* Top Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 1.0f ); glVertex3f( X(), Y() + Height(), Z() + Depth() );
-    /* Top Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 1.0f ); glVertex3f( X() + Width(), Y() + Height(), Z() + Depth() );
-    /* Bottom Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 0.0f ); glVertex3f( X() + Width(), Y(), Z() + Depth() );
-
-    /* Finish the quad */
-    glEnd();
-
-	/* Top Face */
-    glBindTexture( GL_TEXTURE_2D, top->TexID() );
-
-
-    /* Start the quad */
-    glBegin( GL_QUADS );
-
-    /* Top Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 1.0f ); glVertex3f( X(), Y() + Height(), Z() + Depth() );
-    /* Bottom Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 0.0f ); glVertex3f( X(), Y() + Height(), Z() );
-    /* Bottom Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 0.0f ); glVertex3f( X() + Width(), Y() + Height(), Z() );
-    /* Top Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 1.0f ); glVertex3f( X() + Width(), Y() + Height(), Z() + Depth() );
-
-    /* Finish the quad */
-    glEnd();
-
-	/* Bottom Face */
-    glBindTexture( GL_TEXTURE_2D, bottom->TexID() );
-
-
-    /* Start the quad */
-    glBegin( GL_QUADS );
-
-    /* Top Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 1.0f ); glVertex3f( X() + Width(), Y(), Z() );
-    /* Top Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 1.0f ); glVertex3f( X(), Y(), Z() );
-    /* Bottom Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 0.0f ); glVertex3f( X(), Y(), Z() + Depth() );
-    /* Bottom Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 0.0f ); glVertex3f( X() + Width(), Y(), Z() + Depth() );
-
-    /* Finish the quad */
-    glEnd();
-
-	/* Right Face */
-    glBindTexture( GL_TEXTURE_2D, right->TexID() );
-
-
-    /* Start the quad */
-    glBegin( GL_QUADS );
-
-    /* Bottom Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 0.0f ); glVertex3f( X() + Width(), Y(), Z() + Depth() );
-    /* Top Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 1.0f ); glVertex3f( X() + Width(), Y() + Height(), Z() + Depth() );
-    /* Top Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 1.0f ); glVertex3f( X() + Width(), Y() + Height(), Z() );
-    /* Bottom Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 0.0f ); glVertex3f( X() + Width(), Y(), Z() );
-
-    /* Finish the quad */
-    glEnd();
-
-	/* Left Face */
-    glBindTexture( GL_TEXTURE_2D, left->TexID() );
-
-
-    /* Start the quad */
-    glBegin( GL_QUADS );
-
-    /* Bottom Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 0.0f ); glVertex3f( X(), Y(), Z() + Depth() );
-    /* Bottom Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 0.0f ); glVertex3f( X(), Y(), Z() );
-    /* Top Right Of The Texture and Quad */
-    glTexCoord2f( 0.0f, 1.0f ); glVertex3f( X(), Y() + Height(), Z() );
-    /* Top Left Of The Texture and Quad */
-    glTexCoord2f( 1.0f, 1.0f ); glVertex3f( X(), Y() + Height(), Z() + Depth() );
-
-    /* Finish the quad */
-    glEnd();
+        /* End the polygon */
+        glEnd();
+    }
 }
 
 void rWall::postRender() {

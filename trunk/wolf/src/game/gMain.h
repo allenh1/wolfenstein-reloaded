@@ -34,6 +34,7 @@
 #include "tRandom.h"
 #include "rScreen.h"
 #include "rRender.h"
+#include "rWall.h"
 
 #ifndef WOLF_GAME_MAIN_H
 #define WOLF_GAME_MAIN_H
@@ -48,6 +49,9 @@ namespace Game {
 	/* Watchdog timer */
 	const uint16_t gWatchdogTimer = 3000;
 
+    static tDirectory tAppSupportDirectory ( tApplicationSupportDirectory, PROG_NAME );
+    static tDirectory tAppResourceDirectory( tApplicationResourceDirectory, NULL, true );
+    static tAutoDirectory tImageDirectory( &tAppResourceDirectory, "images" );
 }
 
 #endif /* WOLF_GAME_MAIN_H */

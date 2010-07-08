@@ -29,9 +29,6 @@
 
 #include "tDirectories.h"
 
-static tDirectory tAppSupportDirectory ( tApplicationSupportDirectory, PROG_NAME );
-static tDirectory tAppResourceDirectory( tApplicationResourceDirectory, NULL, true );
-
 /*!
  *	Returns the Boost FS path to the directory.
  */

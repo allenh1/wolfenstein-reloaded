@@ -56,12 +56,16 @@ float rPoint::zPos() {
 }
 
 rTexture::rTexture() {
-    _texid = 0;
+    _texid = 0xffffffff;
     _file = NULL;
 }
 
+rTexture::~rTexture() {
+    release();
+}
+
 rTexture::rTexture(tFile * file) {
-    _texid = 0;
+    _texid = 0xffffffff;
     _file = file;
 }
 
@@ -134,9 +138,14 @@ void rTexture::load() {
     }
 
     /* Set texture parameters */
+    glGenTextures( 1, &_texid );
     glBindTexture( GL_TEXTURE_2D, _texid );
+    glPixelStorei( GL_UNPACK_ALIGNMENT, 1 );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE );
 
     /* Determine pixel format */
     if( surface->format->BitsPerPixel == 32 )
@@ -146,7 +155,7 @@ void rTexture::load() {
 
     /* Make the texture - finally */
     SDL_LockSurface( surface );
-    glTexImage2D( GL_TEXTURE_2D, 0, 3, surface->w, surface->h, 0, format, GL_BYTE, surface->pixels );
+    glTexImage2D( GL_TEXTURE_2D, 0, format, surface->w, surface->h, 0, format, GL_BYTE, surface->pixels );
     SDL_UnlockSurface( surface );
 
     /* Free the surface */
@@ -160,6 +169,13 @@ void rTexture::load() {
 void rTexture::load(tFile * file) {
     _file = file;
     load();
+}
+
+void rTexture::release() {
+    if( _texid == 0xffffffff )
+        return;
+
+    glDeleteTextures( 1, &_texid );
 }
 
 rPoly::rPoly() {
@@ -191,8 +207,8 @@ bool rPoly::isVisible() {
     return _visible;
 }
 
-vector <rVertex> rPoly::vertices() {
-    return _vertices;
+vector <rVertex> * rPoly::vertices() {
+    return &_vertices;
 }
 
 rObject::rObject() {
@@ -216,26 +232,45 @@ void rObject::setColor(tColor color) {
 }
 
 void rObject::recalcPolys() {
+    /* Set initial polys if we haven't yet */
+    if( _polys.empty() )
+        this->setInitialPolys();
+
+    /* Make "bags" of coordinates */
     vector <float> xBag;
     vector <float> yBag;
     vector <float> zBag;
+
+    /* Add numbers */
     for( vector <rPoly>::iterator it = _polys.begin(); it != _polys.end(); it++ )
     {
-        vector <rVertex> vertices = it->vertices();
-        for( vector <rVertex>::iterator ti = vertices.begin(); ti != vertices.end(); ti++ )
+        vector <rVertex> * vertices = it->vertices();
+        for( vector <rVertex>::iterator ti = vertices->begin(); ti != vertices->end(); ti++ )
         {
             xBag.push_back( ti->xPos() );
             yBag.push_back( ti->yPos() );
             zBag.push_back( ti->zPos() );
         }
     }
+
+    /* Determine maximum and minimuum */
     float max_x = *max_element( xBag.begin(), xBag.end() );
     float max_y = *max_element( yBag.begin(), yBag.end() );
     float max_z = *max_element( zBag.begin(), zBag.end() );
     float min_x = *min_element( xBag.begin(), xBag.end() );
     float min_y = *min_element( yBag.begin(), yBag.end() );
     float min_z = *min_element( zBag.begin(), zBag.end() );
+
+    /* Set vertices */
     _ctr = rVertex( max_x - (max_x - min_x) / 2.0, max_y - (max_y - min_y) / 2.0, max_z - (max_z - min_z) / 2.0 );
-    _max = rVertex( max_x, max_y, max_z );
-    _min = rVertex( min_x, min_y, min_z );
+    _max = rVertex( max_x + _ctr.xPos(), max_y + _ctr.yPos(), max_z + _ctr.zPos() );
+    _min = rVertex( min_x + _ctr.xPos(), min_y + _ctr.yPos(), min_z + _ctr.zPos() );
+
+    /* Recalculate polygon absolute positions using updated center point */
+    for( vector <rPoly>::iterator it = _polys.begin(); it != _polys.end(); it++ )
+    {
+        vector <rVertex> * vertices = it->vertices();
+        for( vector <rVertex>::iterator ti = vertices->begin(); ti != vertices->end(); ti++ )
+            ti->setCoords( ti->xPos() + _ctr.xPos(), ti->yPos() + _ctr.yPos(), ti->zPos() + _ctr.zPos() );
+    }
 }
