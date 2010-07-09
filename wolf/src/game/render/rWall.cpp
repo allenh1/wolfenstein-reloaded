@@ -49,38 +49,38 @@ void rWall::setInitialPolys() {
 
     /* Add an assload of vertices */
     rPoly faces[6];
-    faces[0].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
-    faces[0].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
-    faces[0].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
-    faces[0].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
+    faces[1].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
+    faces[1].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
+    faces[1].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
+    faces[1].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
 
-    faces[1].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
-    faces[1].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
-    faces[1].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
-    faces[1].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
-
+    faces[2].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
     faces[2].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
-    faces[2].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
-    faces[2].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
     faces[2].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[2].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
 
-    faces[3].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
-    faces[3].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
-    faces[3].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
-    faces[3].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[3].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[3].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
+    faces[3].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
+    faces[3].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
 
-    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
-    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
-    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
     faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
+    faces[4].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
+    faces[4].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[4].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
 
-    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
-    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
-    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
-    faces[5].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[5].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[5].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() + _depth ) );
+    faces[5].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos() + _height, _coords.zPos() ) );
+    faces[5].addVertex( rVertex( _coords.xPos() + _width, _coords.yPos(), _coords.zPos() ) );
+
+    faces[6].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() + _depth ) );
+    faces[6].addVertex( rVertex( _coords.xPos(), _coords.yPos(), _coords.zPos() ) );
+    faces[6].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() ) );
+    faces[6].addVertex( rVertex( _coords.xPos(), _coords.yPos() + _height, _coords.zPos() + _depth ) );
 
     /* Define the polygons */
-    for( size_t a = 0; a < 6; a++ )
+    for( size_t a = 1; a <= 6; a++ )
         _polys.push_back( faces[a] );
 }
 
