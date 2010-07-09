@@ -41,7 +41,7 @@
 
 class eWall: public rWall, private rPoint {
 	public:
-        void collisionDetection(rVertex( );
+        void collisionDetection(rVertex( ));
 
 };
 
